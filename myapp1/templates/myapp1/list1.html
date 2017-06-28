@@ -1,0 +1,62 @@
+{% load staticfiles %}
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Recent Uploads</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href='http://fonts.googleapis.com/css?family=Changa+One|Open+Sans:400italic,700italic,400,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+        <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <header>
+      <a href="{% url 'list1' %}" id="logo">
+        <h1>Uploads</h1>
+        
+      </a>
+      
+    </header>
+
+    <!-- Upload form. Note enctype attribute! -->
+                <form action="{% url "list1" %}" method="post" enctype="multipart/form-data">
+                         <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+  </form>
+                </form>
+
+    <div id="wrapper">
+      <section>
+        {% if documents %}
+        <ul id="gallery">
+          {% for document in documents %}
+          <li>
+             <a href="{{ document.docfile.url }}">
+              <img src="{{ document.docfile.url }}" alt=""></a>
+              <p>
+                <font color="black"> 
+                  <p>Description : {{ document.description }}</p>
+              
+                  <p>Contact/Email-ID : {{ document.emailId }}</p>
+            </font>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+            <p>No documents.</p>
+        {% endif %}
+      </section>
+
+      <footer>
+        <a href="http://twitter.com/abhi_mt"><img src= "{% static 'img/twitter-wrap.png' %}" alt="Twitter Logo" class="social-icon"></a>
+        <a href="https://www.facebook.com/abhi.iitdmnc"><img src="{% static 'img/facebook-wrap.png' %}" alt="Facebook Logo" class="social-icon"></a>
+        <p>&copy; 2017 The Dreamers</p>
+      </footer>
+    </div>
+  </body>
+</html>
