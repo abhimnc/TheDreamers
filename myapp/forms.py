@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from uploads.models import Document
+
 
 class DocumentForm(forms.Form):
     docfile = forms.FileField(
