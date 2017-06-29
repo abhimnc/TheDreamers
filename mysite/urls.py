@@ -26,7 +26,6 @@ from django.conf import settings
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('firstpro.urls')),
-    url(r'^', include('uploads.urls')),
     url(r'^', include('myapp.urls')),
     url(r'^', include('myapp1.urls')),
    
